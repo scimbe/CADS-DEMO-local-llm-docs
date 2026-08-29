@@ -23,6 +23,8 @@ CLI wraps around the raw model call before it ever reaches the API.
 Every one of these is a real, captured response — see `cli-tools/results.md` in the code repo.
 None of it is invented for effect.
 
+<p class="audited"><span class="prov a">audited</span> These four behaviours are captured transcripts the maintainer recorded (<code>cli-tools/results.md</code> in the code repo), quoted verbatim — not re-run for this page.</p>
+
 ## Why this happens
 
 Each of these three CLIs is an *agentic* harness: their system prompts describe an environment

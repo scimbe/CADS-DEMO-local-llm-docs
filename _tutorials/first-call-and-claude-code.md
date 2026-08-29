@@ -33,6 +33,8 @@ curl -s https://llm-34a13a96.bunsenbrenner.org/v1/chat/completions \
 {"error":{"message":"key not allowed to access model. This key can only access models=['local-qwen3-coder']. Tried to access cf-llama-70b","type":"key_model_access_denied","param":"model","code":"401"}}
 ```
 
+<p class="measured"><span class="prov m">measured</span> Reproduced 2026-08-29: a scoped key is refused for <code>cf-llama-70b</code> with this exact <code>key_model_access_denied</code> message. Note the proxy now returns HTTP <code>403</code> for this case; the captured body above shows the older <code>401</code>.</p>
+
 ## 2. Make a real call
 
 ```bash
@@ -48,6 +50,8 @@ curl -s https://llm-34a13a96.bunsenbrenner.org/v1/chat/completions \
 That's a real request, over the real tunnel, hitting real local GPU inference (`qwen3-coder:30b`
 on the origin's TITAN RTX). Round-trip latency for a short reply like this is typically well under
 a second — see `capability-probe/transcripts/` in the code repo for a wider sample.
+
+<p class="audited"><span class="prov a">audited</span> This completion — and the Claude Code run below — are quoted verbatim from a real session against the live model, not re-issued here. The latency figure is the maintainer's observation, not independently re-timed.</p>
 
 ## 3. Point Claude Code at it
 

@@ -8,7 +8,7 @@ order: 1
 
 Access is per-person, via LiteLLM virtual keys — not a shared password, and not the platform's
 own SSO login-gate (that gate is cookie/session-based and would block plain API/CLI callers, so
-it's deliberately left off for this tunnel).
+it's deliberately left off for this tunnel). <span class="prov n">not built</span>
 
 ## Generate a key
 
@@ -27,6 +27,8 @@ The response includes `"key": "sk-..."` — hand that to them directly (it's sho
 stores only a hash). The `models` array is the actual enforcement: this key will 401 on every
 model on the proxy except `local-qwen3-coder`, including the cloud-routed ones this same LiteLLM
 instance also fronts.
+
+<p class="measured"><span class="prov m">measured</span> Enforcement reproduced 2026-08-29 with the example key from the tutorial: it is refused for other models. The refusal now returns HTTP <code>403</code> / <code>key_model_access_denied</code>; earlier captures in these docs show <code>401</code>.</p>
 
 ## Revoke one
 

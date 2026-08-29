@@ -30,6 +30,8 @@ the `*:cloud` fallback chain) are cloud-routed and **not accessible** to keys sc
 | `POST /v1/messages` | Anthropic | LiteLLM's Anthropic-format passthrough; what Claude Code talks to. |
 | `GET /health/liveliness` | — | No auth required; used by the tunnel's own health checks. |
 
+<p class="measured"><span class="prov m">measured</span> Verified live 2026-08-29: <code>/health/liveliness</code> answers <code>200</code> (<code>"I'm alive!"</code>) unauthenticated; <code>/v1/chat/completions</code> and <code>/v1/messages</code> both exist and return a <code>401</code> auth error when called with no key.</p>
+
 ## Auth
 
 `Authorization: Bearer sk-...` (OpenAI-shaped calls) or `x-api-key: sk-...` +
@@ -40,7 +42,7 @@ the `*:cloud` fallback chain) are cloud-routed and **not accessible** to keys sc
 - `drop_params: true` is set proxy-wide, because Claude Code sends a `context_management`
   parameter Ollama's backend doesn't understand; without it every Claude-Code-originated request
   fails with a 400.
-- The model's context window is advertised as 256K by its card, but this deployment has not raised
+- <span class="prov n">not built</span> The model's context window is advertised as 256K by its card, but this deployment has not raised
   Ollama's default `num_ctx` — treat anything past roughly a few thousand tokens of real context
   with suspicion. See `capability-probe/transcripts/05-long-context-needle.json` in the code repo
   for the exact failure.
