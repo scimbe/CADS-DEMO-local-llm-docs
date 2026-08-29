@@ -19,13 +19,13 @@ curl -s http://127.0.0.1:4001/key/generate \
   -d '{"models": ["local-qwen3-coder"], "user_id": "you@example.com", "key_alias": "llm-demo-you"}'
 ```
 
-You get back a key like `sk-JHktR99hbpiHhwVVgT5fzQ`, scoped to exactly one model. Try it against
+You get back a key like `sk-REPLACE_WITH_YOUR_KEY`, scoped to exactly one model. Try it against
 a model it's *not* allowed to use and confirm it's rejected — this is the access-control guarantee
 the whole setup rests on:
 
 ```bash
 curl -s https://llm-34a13a96.bunsenbrenner.org/v1/chat/completions \
-  -H "Authorization: Bearer sk-JHktR99hbpiHhwVVgT5fzQ" -H "Content-Type: application/json" \
+  -H "Authorization: Bearer sk-REPLACE_WITH_YOUR_KEY" -H "Content-Type: application/json" \
   -d '{"model":"cf-llama-70b","messages":[{"role":"user","content":"hi"}]}'
 ```
 
@@ -39,7 +39,7 @@ curl -s https://llm-34a13a96.bunsenbrenner.org/v1/chat/completions \
 
 ```bash
 curl -s https://llm-34a13a96.bunsenbrenner.org/v1/chat/completions \
-  -H "Authorization: Bearer sk-JHktR99hbpiHhwVVgT5fzQ" -H "Content-Type: application/json" \
+  -H "Authorization: Bearer sk-REPLACE_WITH_YOUR_KEY" -H "Content-Type: application/json" \
   -d '{"model":"local-qwen3-coder","messages":[{"role":"user","content":"Reply with exactly the word: pong"}],"max_tokens":20}'
 ```
 
@@ -60,7 +60,7 @@ itself can talk to it directly:
 
 ```bash
 ANTHROPIC_BASE_URL="https://llm-34a13a96.bunsenbrenner.org" \
-ANTHROPIC_AUTH_TOKEN="sk-JHktR99hbpiHhwVVgT5fzQ" \
+ANTHROPIC_AUTH_TOKEN="sk-REPLACE_WITH_YOUR_KEY" \
 CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1 \
   claude -p "Reply with exactly the word: pong" --model local-qwen3-coder
 ```
