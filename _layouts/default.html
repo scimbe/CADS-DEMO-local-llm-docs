@@ -49,6 +49,20 @@
  .index-item:hover{border-color:var(--accent)}
  .index-item strong{display:block;font-family:var(--serif);font-size:1.05rem}
  .index-item span{display:block;color:var(--muted);font-size:.85rem;margin-top:.2rem}
+ /* Provenance markers -- same spirit as the CADS marketplace docs (measured / audited /
+    not-built), adapted to this site's dark palette. A claim about the live system carries a mark
+    saying how it was checked: measured = reproduced end to end against the running proxy and quoted
+    verbatim; audited = a real run the maintainer captured, quoted from stored transcripts rather
+    than re-run on every read; not-built = deliberately absent. */
+ .measured,.audited,.notbuilt{padding:.6rem 1rem;border-radius:0 6px 6px 0;margin:1.2rem 0;font-size:.92rem}
+ .measured{border-left:4px solid #3f8f5b;background:rgba(63,143,91,.10)}
+ .audited{border-left:4px solid var(--accent);background:rgba(127,109,242,.10)}
+ .notbuilt{border-left:4px solid #b0870f;background:rgba(176,135,15,.10)}
+ .prov{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+       padding:.1rem .5rem;border-radius:999px;vertical-align:middle;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+ .prov.m{color:#7fd39a;background:rgba(63,143,91,.18)}
+ .prov.a{color:#b3a7f8;background:rgba(127,109,242,.18)}
+ .prov.n{color:#e0b94a;background:rgba(176,135,15,.18)}
  @media (max-width:800px){.layout{flex-direction:column}aside.sidebar{width:100%}}
 </style>
 </head><body>
@@ -81,7 +95,7 @@
   {{ content }}
   {% if page.section %}
   <div class="page-foot">
-   Found an error, or something that didn't work as documented? <a href="https://github.com/scimbe/CADS-DEMO-sort-docs/issues/new?title={{ page.title | url_encode }}">Open an issue →</a>
+   Found an error, or something that didn't work as documented? <a href="https://github.com/scimbe/CADS-DEMO-local-llm-docs/issues/new?title={{ page.title | url_encode }}">Open an issue →</a>
   </div>
   {% endif %}
  </main>
